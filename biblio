@@ -1,0 +1,38 @@
+CREATE TABLE Autores(
+Id_autores int not null AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(255) not null,
+nacionalidad VARCHAR(255) not null,
+fecha_nac DATE not null
+);
+CREATE TABLE Categorias (
+Id_categorias int not null AUTO_INCREMENT PRIMARY KEY,
+nombre_categoria VARCHAR(255) not null
+);
+CREATE TABLE Libros(
+Id_libros int not null AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(255) not null,
+Id_autores int not null,
+Id_categorias int not null,
+anyo_public DATE not null,
+disponible BOOLEAN,
+FOREIGN KEY (Id_autores) REFERENCES Autores(Id_autores),
+FOREIGN KEY (Id_categorias) REFERENCES Categorias(Id_categorias) 
+);
+CREATE TABLE Usuarios(
+Id_usuario int not null AUTO_INCREMENT PRIMARY KEY,
+nombre VARCHAR(255) not null,
+direccion VARCHAR(255) not null,
+telefono VARCHAR(255) not null
+);
+CREATE TABLE Prestamos(
+Id_Prestamos int not null AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(255) not null,
+Id_usuario int not null,
+Id_libro int not null,
+anyo_public DATE not null,
+disponible BOOLEAN DEFAULT true,
+fecha_prestamo DATE,
+fecha_devolucion DATE,
+FOREIGN KEY (Id_usuario) REFERENCES Usuarios(Id_usuario),
+FOREIGN KEY (Id_libro) REFERENCES Libros(Id_libro) 
+);
